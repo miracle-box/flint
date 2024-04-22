@@ -4,8 +4,6 @@ module.exports = {
 	extends: [
 		'airbnb-base',
 		'airbnb-typescript/base',
-		'plugin:astro/recommended',
-		'plugin:astro/jsx-a11y-recommended',
 		'plugin:prettier/recommended',
 	],
 	parserOptions: {
@@ -13,7 +11,15 @@ module.exports = {
 	},
 	overrides: [
 		{
+			files: ['*.tsx'],
+			extends: ['plugin:solid/typescript', 'plugin:jsx-a11y/recommended'],
+		},
+		{
 			files: ['*.astro'],
+			extends: [
+				'plugin:astro/recommended',
+				'plugin:astro/jsx-a11y-recommended',
+			],
 			parser: 'astro-eslint-parser',
 			parserOptions: {
 				parser: '@typescript-eslint/parser',
