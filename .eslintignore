@@ -1,0 +1,2 @@
+# Prevent VSCode extension from linting eslintrc
+.eslintrc.cjs
