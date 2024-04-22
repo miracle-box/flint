@@ -1,2 +1,5 @@
-# Prevent VSCode extension from linting eslintrc
+# Prevent VSCode extension from linting config files
 .eslintrc.cjs
+.prettierrc.mjs
+tailwind.config.mjs
+astro.config.mjs
