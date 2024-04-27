@@ -2,6 +2,9 @@ import { defineConfig } from 'astro/config';
 import solidJs from '@astrojs/solid-js';
 import tailwind from '@astrojs/tailwind';
 
+// Astro config does not support path aliases: https://github.com/withastro/astro/issues/9782
+import { FlintConfig } from './src/config';
+
 // https://astro.build/config
 export default defineConfig({
 	base: '/',
@@ -10,15 +13,11 @@ export default defineConfig({
 		format: 'directory',
 	},
 	i18n: {
-		defaultLocale: 'en',
-		locales: ['en', 'zh'],
-		fallback: {
-			zh: 'en',
-		},
 		routing: {
 			prefixDefaultLocale: true,
 			redirectToDefaultLocale: true,
 		},
+		...Config.i18n,
 	},
 	integrations: [solidJs(), tailwind()],
 });
