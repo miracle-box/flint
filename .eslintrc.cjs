@@ -9,6 +9,9 @@ module.exports = {
 	parserOptions: {
 		project: './tsconfig.json',
 	},
+	rules: {
+		'import/prefer-default-export': 'off',
+	},
 	overrides: [
 		{
 			files: ['*.tsx'],
