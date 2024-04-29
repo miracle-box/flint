@@ -1,0 +1,8 @@
+{
+    "lang.label": "中文",
+
+    "site.name": "Flint",
+    "site.description": "一个 Astro 文档站点模板",
+
+    "custom.custom": "自定义国际化文本"
+}

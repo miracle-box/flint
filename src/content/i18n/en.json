@@ -1,0 +1,8 @@
+{
+    "lang.label": "English",
+
+    "site.name": "Flint",
+    "site.description": "An elegant documentation site generator template for Astro.",
+
+    "custom.custom": "Custom i18n string"
+}
