@@ -11,6 +11,17 @@ module.exports = {
 	},
 	rules: {
 		'import/prefer-default-export': 'off',
+		// TypeScript handles this.
+		'import/no-unresolved': 'off',
+		'import/extensions': [
+			'error',
+			'never',
+			{
+				astro: 'always',
+				css: 'always',
+				json: 'always',
+			},
+		],
 	},
 	overrides: [
 		{
