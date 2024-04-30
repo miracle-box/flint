@@ -1,0 +1,16 @@
+languageIds:
+    - javascript
+    - typescript
+    - javascriptreact
+    - typescriptreact
+    - astro
+
+usageMatchRegex:
+    # Use t("your.i18n.keys")
+    - "[^\\w\\d]t\\(['\"`]({key})['\"`]"
+
+# Use useTranslation() to define scope
+scopeRangeRegex: "useTranslation\\(\\s*\\[?\\s*['\"`](.*?)['\"`]"
+
+# If set to true, only enables this custom framework (will disable all built-in frameworks)
+monopoly: true

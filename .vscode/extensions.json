@@ -1,4 +1,4 @@
 {
-  "recommendations": ["astro-build.astro-vscode"],
-  "unwantedRecommendations": []
+    "recommendations": ["astro-build.astro-vscode", "lokalise.i18n-ally"],
+    "unwantedRecommendations": []
 }
