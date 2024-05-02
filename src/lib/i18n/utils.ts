@@ -43,6 +43,7 @@ export async function useTranslation(locale: string) {
 				`Translation not found for "${key}" in locale "${locale}"`,
 			);
 
-		return strings[key];
+		// Already checked
+		return strings[key]!;
 	};
 }
