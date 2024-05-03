@@ -1,15 +1,12 @@
 ---
 import Navbar from '~/components/common/Navbar.astro';
 import BaseLayout from './LayoutBase.astro';
+import type { BaseLayoutProps } from '~/lib/types';
 
-type Props = {
-	title: string;
-};
-
-const { title } = Astro.props;
+type Props = BaseLayoutProps;
 ---
 
-<BaseLayout title={title}>
+<BaseLayout {...Astro.props}>
 	<header>
 		<!-- Navbar -->
 		<Navbar />

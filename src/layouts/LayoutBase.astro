@@ -1,18 +1,17 @@
 ---
+import { getLocaleByPath } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 import { Config } from '~/config';
 import CommonHead from '~/components/common/CommonHead.astro';
+import type { BaseLayoutProps } from '~/lib/types';
 
-type Props = {
-	title: string;
-	lightTheme?: string;
-	darkTheme?: string;
-};
+type Props = BaseLayoutProps;
 
 const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
 
-const { title } = Astro.props;
+const langCode = getLocaleByPath(locale);
+const { title, description } = Astro.props;
 
 const lightTheme = Astro.props.lightTheme || 'light';
 const darkTheme = Astro.props.darkTheme || 'dark';
@@ -58,8 +57,11 @@ const darkTheme = Astro.props.darkTheme || 'dark';
 	});
 </script>
 
-<html lang="en" data-theme-light={lightTheme} data-theme-dark={darkTheme}>
-	<CommonHead title={`${title}${Config.titleSeparator}${t('site.name')}`} />
+<html lang={langCode} data-theme-light={lightTheme} data-theme-dark={darkTheme}>
+	<CommonHead
+		title={`${title}${Config.titleSeparator}${t('site.name')}`}
+		description={description}
+	/>
 	<body>
 		<slot />
 	</body>

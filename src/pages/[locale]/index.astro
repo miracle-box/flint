@@ -9,4 +9,6 @@ const t = await useTranslation(locale);
 export const getStaticPaths = getLocalizedRoutes();
 ---
 
-<Layout title={t('site.name')}>index</Layout>
+<Layout title={t('site.name')} description={t('site.description')}>
+	index
+</Layout>

@@ -11,4 +11,8 @@ export const Config = defineConfig({
 		},
 	},
 	titleSeparator: ' | ',
+	icon: {
+		type: 'image/svg+xml',
+		href: '/favicon.svg',
+	},
 } as const satisfies FlintConfig);
