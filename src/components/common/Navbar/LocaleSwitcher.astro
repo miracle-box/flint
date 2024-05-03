@@ -26,6 +26,7 @@ const t = await useTranslation(currentLocale);
 						<a
 							class:list={{ active: locale === currentLocale }}
 							href={getRelativeLocaleUrl(locale)}
+							aria-label={transFunction('lang.label')}
 						>
 							{transFunction('lang.label')}
 						</a>
