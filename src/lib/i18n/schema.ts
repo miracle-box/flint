@@ -28,11 +28,13 @@ const i18nThemeSchema = z
 
 export type CustomI18nSchema = Record<string, z.ZodString>;
 export function getI18nSchema(customSchema: CustomI18nSchema) {
+	const partialCustomSchema = z.object({}).extend(customSchema).partial();
+
 	return z
 		.object({})
 		.merge(i18nLangSchema)
 		.merge(i18nSiteSchema)
 		.merge(i18nNavbarSchema)
 		.merge(i18nThemeSchema)
-		.extend(customSchema);
+		.merge(partialCustomSchema);
 }
