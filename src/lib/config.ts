@@ -22,6 +22,14 @@ const configSchema = z.object({
 		type: z.string(),
 		href: z.string(),
 	}),
+	navbarLinks: z.record(
+		z
+			.object({
+				labelKey: z.string(),
+				href: z.string(),
+			})
+			.array(),
+	),
 });
 
 export type FlintConfig = z.infer<typeof configSchema>;

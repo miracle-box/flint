@@ -15,4 +15,11 @@ export const Config = defineConfig({
 		type: 'image/svg+xml',
 		href: '/favicon.svg',
 	},
+	navbarLinks: {
+		landing: [
+			{ labelKey: 'custom.navbar.docs', href: '/docs' },
+			{ labelKey: 'custom.navbar.flint', href: '/' },
+			{ labelKey: 'custom.navbar.github', href: 'https://github.com' },
+		],
+	},
 } as const satisfies FlintConfig);

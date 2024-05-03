@@ -7,5 +7,8 @@
     "theme.light": "亮色",
     "theme.dark": "暗色",
     "theme.system": "跟随系统",
-    "custom.custom": "自定义国际化文本"
+    "custom.custom": "自定义国际化文本",
+    "custom.navbar.docs": "文档",
+    "custom.navbar.flint": "Flint",
+    "custom.navbar.github": "GitHub"
 }

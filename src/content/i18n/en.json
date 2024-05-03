@@ -7,5 +7,8 @@
     "theme.light": "Light",
     "theme.dark": "Dark",
     "theme.system": "Same as system",
-    "custom.custom": "Custom i18n string"
+    "custom.custom": "Custom i18n string",
+    "custom.navbar.docs": "Docs",
+    "custom.navbar.flint": "Flint",
+    "custom.navbar.github": "GitHub"
 }
