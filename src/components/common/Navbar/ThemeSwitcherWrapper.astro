@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components';
+import { ThemeSwitcher } from './ThemeSwitcher';
+import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
+
+const locale = getLocaleByCode(Astro.currentLocale);
+const t = await useTranslation(locale);
+---
+
+<ThemeSwitcher
+	lightText={t('theme.light')}
+	darkText={t('theme.dark')}
+	systemText={t('theme.system')}
+	client:only="solid"
+>
+	<Fragment slot="target">
+		<Icon name="tabler:palette" class="h-6 w-6" />
+		<span>{t('navbar.theme')}</span>
+		<Icon name="tabler:chevron-down" class="h-4 w-4 opacity-60" />
+	</Fragment>
+
+	<Icon slot="lightIcon" name="tabler:sun" class="h-4 w-4" />
+	<Icon slot="darkIcon" name="tabler:moon" class="h-4 w-4" />
+	<Icon slot="systemIcon" name="tabler:device-desktop" class="h-4 w-4" />
+</ThemeSwitcher>
