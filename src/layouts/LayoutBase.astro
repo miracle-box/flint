@@ -1,20 +1,64 @@
 ---
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 import { Config } from '~/config';
-import CommonHead from '~/components/CommonHead.astro';
+import CommonHead from '~/components/common/CommonHead.astro';
 
 type Props = {
 	title: string;
+	lightTheme?: string;
+	darkTheme?: string;
 };
 
 const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
 
 const { title } = Astro.props;
+
+const lightTheme = Astro.props.lightTheme || 'light';
+const darkTheme = Astro.props.darkTheme || 'dark';
 ---
 
 <!doctype html>
-<html lang="en">
+<script>
+	// Set color scheme
+	const root = document.documentElement;
+
+	const setColorScheme = () => {
+		const lightTheme = root.getAttribute('data-theme-light') || 'light';
+		const darkTheme = root.getAttribute('data-theme-dark') || 'dark';
+
+		const colorScheme =
+			(root.getAttribute('data-color-scheme') || 'system') === 'system'
+				? window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'dark'
+					: 'light'
+				: root.getAttribute('data-color-scheme');
+
+		root.setAttribute(
+			'data-theme',
+			colorScheme === 'light' ? lightTheme : darkTheme,
+		);
+	};
+
+	const observer = new MutationObserver((mutations) => {
+		mutations.forEach((mutation) => {
+			if (
+				mutation.type === 'attributes' &&
+				mutation.attributeName === 'data-color-scheme'
+			) {
+				setColorScheme();
+			}
+		});
+	});
+
+	// ThemeSwitcher will put theme name in <html> tag, we should wait for that.
+	observer.observe(root, {
+		attributes: true,
+		attributeFilter: ['data-color-scheme'],
+	});
+</script>
+
+<html lang="en" data-theme-light={lightTheme} data-theme-dark={darkTheme}>
 	<CommonHead title={`${title}${Config.titleSeparator}${t('site.name')}`} />
 	<body>
 		<slot />

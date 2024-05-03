@@ -16,10 +16,13 @@ export function ThemeSwitcher(props: Props) {
 		localStorage.getItem('color-scheme') || 'system',
 	);
 
-	// Update value in local storage
-	// [TODO) Update actual theme prop
+	// Update value in local storage and <html> props.
 	createEffect(() => {
 		localStorage.setItem('color-scheme', colorScheme());
+		document.documentElement.setAttribute(
+			'data-color-scheme',
+			colorScheme(),
+		);
 	});
 
 	return (
