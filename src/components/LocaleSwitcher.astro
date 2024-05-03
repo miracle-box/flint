@@ -1,0 +1,35 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLocaleByCode, getLocales, useTranslation } from '~/lib/i18n/utils';
+
+const locales = getLocales();
+const currentLocale = getLocaleByCode(Astro.currentLocale);
+---
+
+<details class="dropdown dropdown-end">
+	<summary class="btn btn-ghost">
+		<Icon name="tabler:language" class="h-6 w-6" />
+		<Icon name="tabler:chevron-down" class="h-4 w-4 opacity-60" />
+	</summary>
+	<ul
+		class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
+	>
+		{
+			locales.map(async (locale) => {
+				const t = await useTranslation(locale);
+
+				return (
+					<li>
+						<a
+							class:list={{ active: locale === currentLocale }}
+							href={getRelativeLocaleUrl(locale)}
+						>
+							{t('lang.label')}
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</details>
