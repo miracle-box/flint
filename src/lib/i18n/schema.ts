@@ -11,11 +11,20 @@ const i18nSiteSchema = z
 	})
 	.partial();
 
+const i18nThemeSchema = z
+	.object({
+		'theme.light': z.string(),
+		'theme.dark': z.string(),
+		'theme.system': z.string(),
+	})
+	.partial();
+
 export type CustomI18nSchema = Record<string, z.ZodString>;
 export function getI18nSchema(customSchema: CustomI18nSchema) {
 	return z
 		.object({})
 		.merge(i18nLangSchema)
 		.merge(i18nSiteSchema)
+		.merge(i18nThemeSchema)
 		.extend(customSchema);
 }

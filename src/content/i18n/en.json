@@ -1,8 +1,9 @@
 {
     "lang.label": "English",
-
     "site.name": "Flint",
     "site.description": "An elegant documentation site generator template for Astro.",
-
+    "theme.light": "Light",
+    "theme.dark": "Dark",
+    "theme.system": "Same as system",
     "custom.custom": "Custom i18n string"
 }
