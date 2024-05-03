@@ -10,4 +10,5 @@ export const Config = defineConfig({
 			zh: 'en',
 		},
 	},
+	titleSeparator: ' | ',
 } as const satisfies FlintConfig);

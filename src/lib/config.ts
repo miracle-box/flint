@@ -17,6 +17,7 @@ const configSchema = z.object({
 		),
 		fallback: z.record(z.string()),
 	}),
+	titleSeparator: z.string(),
 });
 
 export type FlintConfig = z.infer<typeof configSchema>;

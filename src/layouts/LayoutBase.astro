@@ -1,16 +1,21 @@
 ---
-import CommonHead from '../components/CommonHead.astro';
+import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
+import { Config } from '~/config';
+import CommonHead from '~/components/CommonHead.astro';
 
 type Props = {
 	title: string;
 };
+
+const locale = getLocaleByCode(Astro.currentLocale);
+const t = await useTranslation(locale);
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<CommonHead title={title} />
+	<CommonHead title={`${title}${Config.titleSeparator}${t('site.name')}`} />
 	<body>
 		<slot />
 	</body>
