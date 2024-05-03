@@ -4,11 +4,13 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocaleByCode, getLocales, useTranslation } from '~/lib/i18n/utils';
 
 const locales = getLocales();
+
 const currentLocale = getLocaleByCode(Astro.currentLocale);
+const t = await useTranslation(currentLocale);
 ---
 
 <details class="dropdown dropdown-end">
-	<summary class="btn btn-ghost">
+	<summary class="btn btn-ghost" title={t('navbar.language')}>
 		<Icon name="tabler:language" class="h-6 w-6" />
 		<Icon name="tabler:chevron-down" class="h-4 w-4 opacity-60" />
 	</summary>
@@ -17,7 +19,7 @@ const currentLocale = getLocaleByCode(Astro.currentLocale);
 	>
 		{
 			locales.map(async (locale) => {
-				const t = await useTranslation(locale);
+				const transFunction = await useTranslation(locale);
 
 				return (
 					<li>
@@ -25,7 +27,7 @@ const currentLocale = getLocaleByCode(Astro.currentLocale);
 							class:list={{ active: locale === currentLocale }}
 							href={getRelativeLocaleUrl(locale)}
 						>
-							{t('lang.label')}
+							{transFunction('lang.label')}
 						</a>
 					</li>
 				);
