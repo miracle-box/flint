@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 import LocaleSwitcher from './Navbar/LocaleSwitcher.astro';
 import ThemeSwitcherWrapper from './Navbar/ThemeSwitcherWrapper.astro';
@@ -10,7 +11,9 @@ const t = await useTranslation(locale);
 
 <div class="navbar border-b border-base-200 bg-base-100">
 	<div class="flex-1">
-		<a href="/" class="btn btn-ghost text-xl">{t('site.name')}</a>
+		<a href={getRelativeLocaleUrl(locale)} class="btn btn-ghost text-xl">
+			{t('site.name')}
+		</a>
 	</div>
 	<div class="flex-none">
 		<!-- Theme switcher -->
