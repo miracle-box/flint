@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 
@@ -29,7 +28,7 @@ const { links } = Astro.props;
 			>
 				{t(link.labelKey)}
 				{isExternal && (
-					<Icon name="tabler:external-link" class="opacity-60" />
+					<span class="icon-[tabler--external-link] opacity-60" />
 				)}
 			</a>
 		);

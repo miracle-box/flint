@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 import Links from './Navbar/Links.astro';
@@ -38,7 +37,7 @@ const links = Config.navbarLinks[Astro.props.linksKey];
 		<!-- Mobile nav toggle -->
 		<!-- [TODO) Waiting for navbar links -->
 		<button class="btn btn-square btn-ghost sm:hidden">
-			<Icon name="tabler:menu-2" class="h-6 w-6" />
+			<span class="icon-[tabler--menu-2] h-6 w-6"></span>
 		</button>
 	</div>
 </div>

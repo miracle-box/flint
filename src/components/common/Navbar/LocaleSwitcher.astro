@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocaleByCode, getLocales, useTranslation } from '~/lib/i18n/utils';
 
@@ -11,8 +10,8 @@ const t = await useTranslation(currentLocale);
 
 <details class="dropdown dropdown-end">
 	<summary class="btn btn-ghost" title={t('navbar.language')}>
-		<Icon name="tabler:language" class="h-6 w-6" />
-		<Icon name="tabler:chevron-down" class="h-4 w-4 opacity-60" />
+		<span class="icon-[tabler--language] h-6 w-6"></span>
+		<span class="icon-[tabler--chevron-down] h-4 w-4 opacity-60"></span>
 	</summary>
 	<ul
 		class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
