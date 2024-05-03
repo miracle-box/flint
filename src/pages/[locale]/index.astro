@@ -1,0 +1,12 @@
+---
+import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
+import { getLocalizedRoutes } from '~/lib/routing';
+import Layout from '~/layouts/BlankPage.astro';
+
+const locale = getLocaleByCode(Astro.currentLocale);
+const t = await useTranslation(locale);
+
+export const getStaticPaths = getLocalizedRoutes();
+---
+
+<Layout title={t('site.name')}>index</Layout>
