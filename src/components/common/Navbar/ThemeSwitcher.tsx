@@ -1,15 +1,10 @@
-import { createEffect, createSignal, type JSX } from 'solid-js';
+import { createEffect, createSignal } from 'solid-js';
 
 type Props = {
+	labelText: string;
 	lightText: string;
 	darkText: string;
 	systemText: string;
-
-	// Cannot define typed slots.
-	lightIcon?: JSX.Element;
-	darkIcon?: JSX.Element;
-	systemIcon?: JSX.Element;
-	target?: JSX.Element;
 };
 export function ThemeSwitcher(props: Props) {
 	const [colorScheme, setColorScheme] = createSignal(
@@ -27,7 +22,26 @@ export function ThemeSwitcher(props: Props) {
 
 	return (
 		<details class="dropdown dropdown-end">
-			<summary class="btn btn-ghost">{props.target}</summary>
+			<summary class="btn btn-ghost font-normal" title={props.labelText}>
+				{/* Forced color scheme have colored icons */}
+				{colorScheme() === 'light' && (
+					<span class="icon-[tabler--sun] h-6 w-6 text-primary" />
+				)}
+				{colorScheme() === 'dark' && (
+					<span class="icon-[tabler--moon] h-6 w-6 text-primary" />
+				)}
+
+				{/* Icon is based on current theme */}
+				{colorScheme() === 'system' &&
+					(window.matchMedia('(prefers-color-scheme: dark)')
+						.matches ? (
+						<span class="icon-[tabler--moon] h-6 w-6" />
+					) : (
+						<span class="icon-[tabler--sun] h-6 w-6" />
+					))}
+
+				<span class="icon-[tabler--chevron-down] h-4 w-4 opacity-60" />
+			</summary>
 			<ul class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow">
 				<li>
 					<button
@@ -36,7 +50,7 @@ export function ThemeSwitcher(props: Props) {
 							setColorScheme('light');
 						}}
 					>
-						{props.lightIcon}
+						<span class="icon-[tabler--sun] h-4 w-4" />
 						{props.lightText}
 					</button>
 					<button
@@ -45,7 +59,7 @@ export function ThemeSwitcher(props: Props) {
 							setColorScheme('dark');
 						}}
 					>
-						{props.darkIcon}
+						<span class="icon-[tabler--moon] h-4 w-4" />
 						{props.darkText}
 					</button>
 					<button
@@ -54,7 +68,7 @@ export function ThemeSwitcher(props: Props) {
 							setColorScheme('system');
 						}}
 					>
-						{props.systemIcon}
+						<span class="icon-[tabler--device-desktop] h-4 w-4" />
 						{props.systemText}
 					</button>
 				</li>
