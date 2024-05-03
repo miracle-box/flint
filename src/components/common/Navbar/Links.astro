@@ -1,0 +1,37 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
+
+type Props = {
+	links: { labelKey: string; href: string }[];
+};
+
+const locale = getLocaleByCode(Astro.currentLocale);
+const t = await useTranslation(locale);
+
+const { links } = Astro.props;
+---
+
+{
+	links.map((link) => {
+		// If a link starts with '/', we consider it as an internal link
+		const isExternal = !link.href.startsWith('/');
+		const normalizedHref = isExternal
+			? link.href
+			: getRelativeLocaleUrl(locale, link.href);
+
+		return (
+			<a
+				href={normalizedHref}
+				target={isExternal ? '_blank' : '_self'}
+				class="btn btn-ghost gap-0.5 font-normal"
+			>
+				{t(link.labelKey)}
+				{isExternal && (
+					<Icon name="tabler:external-link" class="opacity-60" />
+				)}
+			</a>
+		);
+	})
+}

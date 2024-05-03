@@ -2,20 +2,33 @@
 import { Icon } from 'astro-icon/components';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
+import Links from './Navbar/Links.astro';
 import LocaleSwitcher from './Navbar/LocaleSwitcher.astro';
 import ThemeSwitcherWrapper from './Navbar/ThemeSwitcherWrapper.astro';
+import { Config } from '~/config';
+
+type Props = {
+	linksKey: keyof typeof Config.navbarLinks;
+};
 
 const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
+
+const links = Config.navbarLinks[Astro.props.linksKey];
 ---
 
 <div class="navbar border-b border-base-200 bg-base-100">
 	<div class="flex-1">
+		<!-- Site title -->
 		<a href={getRelativeLocaleUrl(locale)} class="btn btn-ghost text-xl">
 			{t('site.name')}
 		</a>
 	</div>
+
 	<div class="flex-none">
+		<!-- Links -->
+		<Links links={links} />
+
 		<!-- Theme switcher -->
 		<ThemeSwitcherWrapper />
 

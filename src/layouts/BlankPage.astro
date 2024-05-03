@@ -2,14 +2,19 @@
 import Navbar from '~/components/common/Navbar.astro';
 import BaseLayout from './LayoutBase.astro';
 import type { BaseLayoutProps } from '~/lib/types';
+import type { Config } from '~/config';
 
-type Props = BaseLayoutProps;
+type Props = BaseLayoutProps & {
+	navLinksKey: keyof typeof Config.navbarLinks;
+};
+
+const { navLinksKey } = Astro.props;
 ---
 
 <BaseLayout {...Astro.props}>
 	<header>
 		<!-- Navbar -->
-		<Navbar />
+		<Navbar linksKey={navLinksKey} />
 	</header>
 	<slot />
 </BaseLayout>
