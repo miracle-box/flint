@@ -35,7 +35,7 @@ export async function useTranslation(locale: string) {
 			`Translation dictionary not found for locale "${locale}", default locale will be used.`,
 		);
 
-	const strings = { ...trans?.data, ...fallbackTrans.data };
+	const strings = { ...fallbackTrans.data, ...trans?.data };
 
 	return function t(key: string) {
 		if (!strings[key])
