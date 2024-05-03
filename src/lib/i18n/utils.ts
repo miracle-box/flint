@@ -1,6 +1,6 @@
 import { getEntry } from 'astro:content';
 import { getPathByLocale } from 'astro:i18n';
-import type { FlintConfig } from '@lib/config';
+import type { FlintConfig } from '~/lib/config';
 import { Config } from '~/config';
 import { logger } from '../logger';
 

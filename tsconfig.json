@@ -4,7 +4,6 @@
         "baseUrl": ".",
         "paths": {
             "~/*": ["src/*"],
-            "@lib/*": ["src/lib/*"],
             "@custom/*": ["src/custom/*"]
         },
         "jsx": "preserve",
