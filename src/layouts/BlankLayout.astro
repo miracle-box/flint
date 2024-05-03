@@ -1,12 +1,9 @@
 ---
 import Navbar from '~/components/common/Navbar.astro';
 import BaseLayout from './LayoutBase.astro';
-import type { BaseLayoutProps } from '~/lib/types';
-import type { Config } from '~/config';
+import type { BlankLayoutProps } from '~/lib/types';
 
-type Props = BaseLayoutProps & {
-	navLinksKey: keyof typeof Config.navbarLinks;
-};
+type Props = BlankLayoutProps;
 
 const { navLinksKey } = Astro.props;
 ---

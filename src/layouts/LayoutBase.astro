@@ -3,9 +3,9 @@ import { getLocaleByPath } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 import { Config } from '~/config';
 import CommonHead from '~/components/common/CommonHead.astro';
-import type { BaseLayoutProps } from '~/lib/types';
+import type { LayoutBaseProps } from '~/lib/types';
 
-type Props = BaseLayoutProps;
+type Props = LayoutBaseProps;
 
 const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
