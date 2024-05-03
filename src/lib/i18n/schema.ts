@@ -11,6 +11,13 @@ const i18nSiteSchema = z
 	})
 	.partial();
 
+const i18nNavbarSchema = z
+	.object({
+		'navbar.theme': z.string(),
+		'navbar.language': z.string(),
+	})
+	.partial();
+
 const i18nThemeSchema = z
 	.object({
 		'theme.light': z.string(),
@@ -25,6 +32,7 @@ export function getI18nSchema(customSchema: CustomI18nSchema) {
 		.object({})
 		.merge(i18nLangSchema)
 		.merge(i18nSiteSchema)
+		.merge(i18nNavbarSchema)
 		.merge(i18nThemeSchema)
 		.extend(customSchema);
 }

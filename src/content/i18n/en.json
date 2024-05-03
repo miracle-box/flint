@@ -2,6 +2,8 @@
     "lang.label": "English",
     "site.name": "Flint",
     "site.description": "An elegant documentation site generator template for Astro.",
+    "navbar.theme": "Theme",
+    "navbar.language": "Language",
     "theme.light": "Light",
     "theme.dark": "Dark",
     "theme.system": "Same as system",

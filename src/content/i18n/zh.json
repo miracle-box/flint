@@ -2,6 +2,8 @@
     "lang.label": "中文",
     "site.name": "Flint",
     "site.description": "一个 Astro 文档站点模板",
+    "navbar.theme": "主题",
+    "navbar.language": "语言",
     "theme.light": "亮色",
     "theme.dark": "暗色",
     "theme.system": "跟随系统",
