@@ -1,5 +1,3 @@
-import type { Config } from '~/config';
-
 export type LayoutBaseProps = {
 	title: string;
 	description: string;
@@ -8,5 +6,5 @@ export type LayoutBaseProps = {
 };
 
 export type BlankLayoutProps = LayoutBaseProps & {
-	navLinksKey: keyof typeof Config.navbarLinks;
+	navConfigKey?: string;
 };

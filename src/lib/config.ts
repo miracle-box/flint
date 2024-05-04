@@ -29,20 +29,27 @@ const configSchema = z.object({
 			type: 'image/svg+xml',
 			href: '/favicon.svg',
 		}),
-	navbarLinks: z
+	navbar: z
 		.record(
-			z
-				.object({
-					labelKey: z.string(),
-					href: z.string(),
-				})
-				.array(),
+			z.object({
+				titleI18nKey: z.optional(z.string().default('site.name')),
+				showTitle: z.optional(z.boolean().default(true)),
+				icon: z.optional(z.string().default('/favicon.svg')),
+				showIcon: z.optional(z.boolean().default(true)),
+				links: z
+					.object({
+						labelI18nKey: z.string(),
+						href: z.string(),
+					})
+					.array()
+					.default([]),
+			}),
 		)
 		.default({}),
 });
 
 export type FlintConfig = z.infer<typeof configSchema>;
 
-export function defineConfig<T = FlintConfig>(config: T) {
-	return configSchema.parse(config) as T;
+export function defineConfig(config: FlintConfig) {
+	return configSchema.parse(config);
 }

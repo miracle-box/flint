@@ -3,7 +3,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 
 type Props = {
-	links: { labelKey: string; href: string }[];
+	links: { labelI18nKey: string; href: string }[];
 };
 
 const locale = getLocaleByCode(Astro.currentLocale);
@@ -26,7 +26,7 @@ const { links } = Astro.props;
 				target={isExternal ? '_blank' : '_self'}
 				class="btn btn-ghost gap-0.5 font-normal"
 			>
-				{t(link.labelKey)}
+				{t(link.labelI18nKey)}
 				{isExternal && (
 					<span class="icon-[tabler--external-link] opacity-60" />
 				)}

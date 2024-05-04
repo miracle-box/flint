@@ -5,13 +5,13 @@ import type { BlankLayoutProps } from '~/lib/types';
 
 type Props = BlankLayoutProps;
 
-const { navLinksKey } = Astro.props;
+const { navConfigKey } = Astro.props;
 ---
 
 <BaseLayout {...Astro.props}>
 	<header>
 		<!-- Navbar -->
-		<Navbar linksKey={navLinksKey} />
+		<Navbar configKey={navConfigKey} />
 	</header>
 	<slot />
 </BaseLayout>

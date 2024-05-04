@@ -5,15 +5,22 @@ import Links from './Navbar/Links.astro';
 import LocaleSwitcher from './Navbar/LocaleSwitcher.astro';
 import ThemeSwitcherWrapper from './Navbar/ThemeSwitcherWrapper.astro';
 import { Config } from '~/config';
+import { logger } from '~/lib/logger';
 
 type Props = {
-	linksKey: keyof typeof Config.navbarLinks;
+	configKey?: string | undefined;
 };
 
 const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
 
-const links = Config.navbarLinks[Astro.props.linksKey];
+const { configKey } = Astro.props;
+const navConfig = Object.entries(Config.navbar).find(
+	([key]) => key === configKey,
+)?.[1];
+
+if (configKey && !navConfig)
+	logger.warn(`Navbar config "${configKey}" is not found.`);
 ---
 
 <div class="navbar border-b border-base-200 bg-base-100">
@@ -26,7 +33,7 @@ const links = Config.navbarLinks[Astro.props.linksKey];
 
 	<div class="flex-none">
 		<!-- Links -->
-		<Links links={links} />
+		<Links links={navConfig?.links ?? []} />
 
 		<!-- Theme switcher -->
 		<ThemeSwitcherWrapper />
