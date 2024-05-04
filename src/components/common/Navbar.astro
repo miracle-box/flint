@@ -1,5 +1,5 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { normalizeLink } from '~/lib/routing';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 import Links from './Navbar/Links.astro';
 import LocaleSwitcher from './Navbar/LocaleSwitcher.astro';
@@ -21,13 +21,25 @@ const navConfig = Object.entries(Config.navbar).find(
 
 if (configKey && !navConfig)
 	logger.warn(`Navbar config "${configKey}" is not found.`);
+
+// Fallback to a reasonable value when no navConfig provided
+const title = t(navConfig?.titleI18nKey ?? 'site.name');
+const icon = navConfig?.icon ?? Config.site.icon.href;
+const titleLink = normalizeLink(locale, navConfig?.titleLink ?? '/');
 ---
 
 <div class="navbar border-b border-base-200 bg-base-100">
 	<div class="flex-1">
-		<!-- Site title -->
-		<a href={getRelativeLocaleUrl(locale)} class="btn btn-ghost text-xl">
-			{t('site.name')}
+		<a href={titleLink} class="btn btn-ghost text-xl">
+			<!-- Site icon -->
+			{
+				(!navConfig || navConfig.showIcon) && (
+					<img src={icon} alt={title} width="32" height="32" />
+				)
+			}
+
+			<!-- Site title -->
+			{(!navConfig || navConfig.showTitle) && <span>{title}</span>}
 		</a>
 	</div>
 

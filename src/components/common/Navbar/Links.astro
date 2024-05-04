@@ -1,6 +1,6 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
+import { isExternalLink, normalizeLink } from '~/lib/routing';
 
 type Props = {
 	links: { labelI18nKey: string; href: string }[];
@@ -14,15 +14,11 @@ const { links } = Astro.props;
 
 {
 	links.map((link) => {
-		// If a link starts with '/', we consider it as an internal link
-		const isExternal = !link.href.startsWith('/');
-		const normalizedHref = isExternal
-			? link.href
-			: getRelativeLocaleUrl(locale, link.href);
+		const isExternal = isExternalLink(link.href);
 
 		return (
 			<a
-				href={normalizedHref}
+				href={normalizeLink(locale, link.href)}
 				target={isExternal ? '_blank' : '_self'}
 				class="btn btn-ghost gap-0.5 font-normal"
 			>

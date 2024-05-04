@@ -18,7 +18,8 @@ export const Config = defineConfig({
 	},
 	navbar: {
 		landing: {
-			// titleI18nKey: 'site.desc',
+			titleI18nKey: 'site.name',
+			icon: 'https://avatars.githubusercontent.com/u/29345827?v=4',
 			links: [
 				{ labelI18nKey: 'custom.navbar.docs', href: '/docs' },
 				{ labelI18nKey: 'custom.navbar.flint', href: '/' },

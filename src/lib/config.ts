@@ -33,6 +33,7 @@ const navbarConfigSchema = z.object({
 	showTitle: z.boolean().default(true),
 	icon: z.string().default('/favicon.svg'),
 	showIcon: z.boolean().default(true),
+	titleLink: z.string().default('/'),
 	links: z
 		.object({
 			labelI18nKey: z.string(),
