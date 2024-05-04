@@ -50,11 +50,13 @@ const darkTheme = Astro.props.darkTheme || 'dark';
 		});
 	});
 
-	// ThemeSwitcher will put theme name in <html> tag, we should wait for that.
 	observer.observe(root, {
 		attributes: true,
 		attributeFilter: ['data-color-scheme'],
 	});
+
+	// Set the initial theme
+	setColorScheme();
 </script>
 
 <html lang={langCode} data-theme-light={lightTheme} data-theme-dark={darkTheme}>

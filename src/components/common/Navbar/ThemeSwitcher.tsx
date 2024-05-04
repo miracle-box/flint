@@ -1,4 +1,4 @@
-import { createEffect, createSignal } from 'solid-js';
+import { createEffect, createSignal, onMount } from 'solid-js';
 
 type Props = {
 	labelText: string;
@@ -7,9 +7,25 @@ type Props = {
 	systemText: string;
 };
 export function ThemeSwitcher(props: Props) {
-	const [colorScheme, setColorScheme] = createSignal(
-		localStorage.getItem('color-scheme') || 'system',
-	);
+	const [colorScheme, setColorScheme] = createSignal<
+		'light' | 'dark' | 'system'
+	>('system');
+
+	const [systemPrefersDark, setSystemPrefersDark] = createSignal(false);
+
+	// Initialize on mount
+	onMount(() => {
+		// Get color scheme settings
+		const storedColorScheme = localStorage.getItem('color-scheme');
+		if (storedColorScheme === 'light' || storedColorScheme === 'dark')
+			setColorScheme(storedColorScheme);
+		else setColorScheme('system');
+
+		// Get system color mode
+		setSystemPrefersDark(
+			window.matchMedia('(prefers-color-scheme: dark)').matches,
+		);
+	});
 
 	// Update value in local storage and <html> props.
 	createEffect(() => {
@@ -33,8 +49,7 @@ export function ThemeSwitcher(props: Props) {
 
 				{/* Icon is based on current theme */}
 				{colorScheme() === 'system' &&
-					(window.matchMedia('(prefers-color-scheme: dark)')
-						.matches ? (
+					(systemPrefersDark() ? (
 						<span class="icon-[tabler--moon] h-6 w-6" />
 					) : (
 						<span class="icon-[tabler--sun] h-6 w-6" />

@@ -6,13 +6,10 @@ const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
 ---
 
-<!-- Pervent layout shifting -->
-<div class="w-[5.125rem]">
-	<ThemeSwitcher
-		labelText={t('navbar.theme')}
-		lightText={t('theme.light')}
-		darkText={t('theme.dark')}
-		systemText={t('theme.system')}
-		client:only="solid"
-	/>
-</div>
+<ThemeSwitcher
+	labelText={t('navbar.theme')}
+	lightText={t('theme.light')}
+	darkText={t('theme.dark')}
+	systemText={t('theme.system')}
+	client:load
+/>
