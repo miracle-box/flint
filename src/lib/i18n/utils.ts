@@ -23,19 +23,38 @@ export function getLocaleByCode(code?: string): Locale {
 }
 
 export async function useTranslation(locale: string) {
-	const fallbackTrans = await getEntry('i18n', Config.i18n.defaultLocale);
-	if (!fallbackTrans)
+	// Default locale
+	const defaultTrans = await getEntry('i18n', Config.i18n.defaultLocale);
+	if (!defaultTrans)
 		throw new Error(
 			`Translation dictionary not found for your default locale "${Config.i18n.defaultLocale}".`,
 		);
 
+	// Fallback locale
+	const fallbackLocale = Object.entries(Config.i18n.fallback).find(
+		([l]) => l === locale,
+	)?.[1];
+	const fallbackTrans = fallbackLocale
+		? await getEntry('i18n', fallbackLocale)
+		: null;
+
+	if (fallbackLocale && !fallbackTrans)
+		logger.warn(
+			`Fallback locale for "${locale}" is "${fallbackLocale}", but its translation is not found, default locale will be used.`,
+		);
+
+	// Current locale
 	const trans = await getEntry('i18n', locale);
 	if (!trans)
 		logger.warn(
 			`Translation dictionary not found for locale "${locale}", default locale will be used.`,
 		);
 
-	const strings = { ...fallbackTrans.data, ...trans?.data };
+	const strings = {
+		...defaultTrans.data,
+		...fallbackTrans?.data,
+		...trans?.data,
+	};
 
 	return function t(key: string) {
 		if (!strings[key])
