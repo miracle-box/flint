@@ -1,25 +1,17 @@
 import { getEntry } from 'astro:content';
 import { getPathByLocale } from 'astro:i18n';
-import type { FlintConfig } from '~/lib/config';
 import { Config } from '~/config';
 import { logger } from '../logger';
 
-type ExtractLocalesFromConfig<
-	T extends FlintConfig['i18n']['locales'][number],
-> = T extends string ? T : T extends { path: string } ? T['path'] : never;
-type LocalesConfigLiteral = (typeof Config)['i18n']['locales'];
-
-export type Locale = ExtractLocalesFromConfig<LocalesConfigLiteral[number]>;
-
-export function getLocales(): Locale[] {
+export function getLocales(): string[] {
 	return Config.i18n.locales.map((locale) =>
 		typeof locale === 'string' ? locale : locale.path,
 	);
 }
 
-export function getLocaleByCode(code?: string): Locale {
+export function getLocaleByCode(code?: string): string {
 	if (!code) return Config.i18n.defaultLocale;
-	return getPathByLocale(code) as Locale;
+	return getPathByLocale(code) as string;
 }
 
 export async function useTranslation(locale: string) {

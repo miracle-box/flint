@@ -1,9 +1,9 @@
 import type { GetStaticPaths, Props } from 'astro';
-import { getLocales, type Locale } from '~/lib/i18n/utils';
+import { getLocales } from '~/lib/i18n/utils';
 
 export function getLocalizedRoutes(
 	// Receive an function for generating props
-	propsGenerator: (locale: Locale) => Props = () => ({}),
+	propsGenerator: (locale: string) => Props = () => ({}),
 ) {
 	return (() => {
 		const locales = getLocales();
