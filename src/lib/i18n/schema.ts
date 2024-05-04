@@ -15,6 +15,8 @@ const i18nNavbarSchema = z
 	.object({
 		'navbar.theme': z.string(),
 		'navbar.language': z.string(),
+		'navbar.menu': z.string(),
+		'navbar.menu.close': z.string(),
 	})
 	.partial();
 
