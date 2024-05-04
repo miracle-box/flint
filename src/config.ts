@@ -1,5 +1,4 @@
 // Astro config does not support path aliases: https://github.com/withastro/astro/issues/9782
-import type { FlintConfig } from './lib/config';
 import { defineConfig } from './lib/config';
 
 export const Config = defineConfig({
@@ -10,13 +9,16 @@ export const Config = defineConfig({
 			zh: 'en',
 		},
 	},
-	titleSeparator: ' | ',
-	icon: {
-		type: 'image/svg+xml',
-		href: '/favicon.svg',
+	site: {
+		titleSeparator: ' | ',
+		icon: {
+			type: 'image/svg+xml',
+			href: '/favicon.svg',
+		},
 	},
 	navbar: {
 		landing: {
+			// titleI18nKey: 'site.desc',
 			links: [
 				{ labelI18nKey: 'custom.navbar.docs', href: '/docs' },
 				{ labelI18nKey: 'custom.navbar.flint', href: '/' },
@@ -27,4 +29,4 @@ export const Config = defineConfig({
 			],
 		},
 	},
-} satisfies FlintConfig);
+});

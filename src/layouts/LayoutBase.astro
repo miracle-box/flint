@@ -59,7 +59,7 @@ const darkTheme = Astro.props.darkTheme || 'dark';
 
 <html lang={langCode} data-theme-light={lightTheme} data-theme-dark={darkTheme}>
 	<CommonHead
-		title={`${title}${Config.titleSeparator}${t('site.name')}`}
+		title={`${title}${Config.site.titleSeparator}${t('site.name')}`}
 		description={description}
 	/>
 	<body>

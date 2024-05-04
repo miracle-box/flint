@@ -1,55 +1,64 @@
 import { z } from 'astro/zod';
 
+const i18nConfigSchema = z.object({
+	defaultLocale: z.string().default('en'),
+	locales: z
+		.array(
+			z.union([
+				z.string(),
+				z.object({
+					path: z.string(),
+					codes: z.string().array(),
+				}),
+			]),
+		)
+		.default(['en']),
+	fallback: z.record(z.string()).default({}),
+});
+export type I18nConfig = z.infer<typeof i18nConfigSchema>;
+export type UserI18nConfig = Partial<I18nConfig>;
+
+const siteConfigSchema = z.object({
+	titleSeparator: z.string().default(' | '),
+	icon: z.object({
+		type: z.string().default('image/svg+xml'),
+		href: z.string().default('/favicon.svg'),
+	}),
+});
+export type SiteConfig = z.infer<typeof siteConfigSchema>;
+export type UserSiteConfig = Partial<SiteConfig>;
+
+const navbarConfigSchema = z.object({
+	titleI18nKey: z.string().default('site.name'),
+	showTitle: z.boolean().default(true),
+	icon: z.string().default('/favicon.svg'),
+	showIcon: z.boolean().default(true),
+	links: z
+		.object({
+			labelI18nKey: z.string(),
+			href: z.string(),
+		})
+		.array()
+		.default([]),
+});
+export type NavbarConfig = z.infer<typeof navbarConfigSchema>;
+export type UserNavbarConfig = Partial<NavbarConfig>;
+
 const configSchema = z.object({
 	/**
 	 * This will be used in Astro config.
 	 */
-	i18n: z.object({
-		defaultLocale: z.string().default('en'),
-		locales: z
-			.array(
-				z.union([
-					z.string(),
-					z.object({
-						path: z.string(),
-						codes: z.string().array(),
-					}),
-				]),
-			)
-			.default(['en']),
-		fallback: z.record(z.string()).default({}),
-	}),
-	titleSeparator: z.string().default(' | '),
-	icon: z
-		.object({
-			type: z.string(),
-			href: z.string(),
-		})
-		.default({
-			type: 'image/svg+xml',
-			href: '/favicon.svg',
-		}),
-	navbar: z
-		.record(
-			z.object({
-				titleI18nKey: z.optional(z.string().default('site.name')),
-				showTitle: z.optional(z.boolean().default(true)),
-				icon: z.optional(z.string().default('/favicon.svg')),
-				showIcon: z.optional(z.boolean().default(true)),
-				links: z
-					.object({
-						labelI18nKey: z.string(),
-						href: z.string(),
-					})
-					.array()
-					.default([]),
-			}),
-		)
-		.default({}),
+	i18n: i18nConfigSchema,
+	site: siteConfigSchema,
+	navbar: z.record(navbarConfigSchema).default({}),
 });
-
 export type FlintConfig = z.infer<typeof configSchema>;
+export type UserFlintConfig = {
+	i18n?: UserI18nConfig;
+	site?: UserSiteConfig;
+	navbar?: Record<string, UserNavbarConfig>;
+};
 
-export function defineConfig(config: FlintConfig) {
+export function defineConfig(config: UserFlintConfig): FlintConfig {
 	return configSchema.parse(config);
 }

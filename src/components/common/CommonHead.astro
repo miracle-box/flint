@@ -13,7 +13,11 @@ const { title, description } = Astro.props;
 	<meta charset="UTF-8" />
 	<meta name="description" content={description} />
 	<meta name="viewport" content="width=device-width" />
-	<link rel="icon" type={Config.icon.type} href={Config.icon.href} />
+	<link
+		rel="icon"
+		type={Config.site.icon.type}
+		href={Config.site.icon.href}
+	/>
 	<meta name="generator" content={Astro.generator} />
 	<title>{title}</title>
 </head>
