@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { normalizeLink } from '~/lib/routing';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 import Links from './Navbar/Links.astro';
@@ -34,7 +35,13 @@ const titleLink = normalizeLink(locale, navConfig?.titleLink ?? '/');
 			<!-- Site icon -->
 			{
 				(!navConfig || navConfig.showIcon) && (
-					<img src={icon} alt={title} width="32" height="32" />
+					<Image
+						src={icon}
+						alt={title}
+						width="32"
+						height="32"
+						loading="eager"
+					/>
 				)
 			}
 
