@@ -9,9 +9,10 @@ const { navConfigKey } = Astro.props;
 ---
 
 <Layout {...Astro.props}>
-	<Fragment slot="page-top">
-		<slot name="page-top" />
+	<Fragment slot="layout-top">
+		<slot name="layout-top" />
 		<header class="sticky top-0">
+			<slot name="page-before-navbar" />
 			<Navbar configKey={navConfigKey} />
 		</header>
 	</Fragment>
@@ -20,9 +21,9 @@ const { navConfigKey } = Astro.props;
 		<slot />
 	</main>
 
-	<Fragment slot="page-bottom">
-		<slot name="before-footer" />
-		<slot name="footer" />
-		<slot name="page-bottom" />
+	<Fragment slot="layout-bottom">
+		<slot name="page-before-footer" />
+		<slot name="page-footer" />
+		<slot name="layout-bottom" />
 	</Fragment>
 </Layout>

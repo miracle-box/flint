@@ -6,9 +6,9 @@ type Props = LayoutBaseProps;
 ---
 
 <Layout {...Astro.props}>
-	<slot name="page-top" />
+	<slot name="layout-top" />
 
 	<slot />
 
-	<slot name="page-bottom" />
+	<slot name="layout-bottom" />
 </Layout>
