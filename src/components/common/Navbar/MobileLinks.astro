@@ -12,6 +12,13 @@ const t = await useTranslation(locale);
 const { links } = Astro.props;
 ---
 
+<button
+	class="btn btn-square btn-ghost md:hidden"
+	onclick="navbar_drawer_dialog.showModal()"
+>
+	<span class="icon-[tabler--menu-2] h-6 w-6" aria-label={t('navbar.menu')}>
+	</span>
+</button>
 <dialog id="navbar_drawer_dialog" class="modal items-start justify-end">
 	<div class="modal-box m-4 min-w-48">
 		<!-- Close button -->

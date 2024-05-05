@@ -63,18 +63,7 @@ const titleLink = normalizeLink(locale, navConfig?.titleLink ?? '/');
 		<!-- Locale switcher -->
 		<LocaleSwitcher />
 
-		<!-- Mobile nav toggle -->
-		<button
-			class="btn btn-square btn-ghost md:hidden"
-			onclick="navbar_drawer_dialog.showModal()"
-		>
-			<span
-				class="icon-[tabler--menu-2] h-6 w-6"
-				aria-label={t('navbar.menu')}
-			>
-			</span>
-		</button>
-		<!-- Mobile nav dialog -->
+		<!-- Mobile nav -->
 		<MobileLinks links={navConfig?.links ?? []} />
 	</div>
 </div>
