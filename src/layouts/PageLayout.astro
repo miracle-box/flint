@@ -13,7 +13,12 @@ const { navConfigKey } = Astro.props;
 		<slot name="layout-top" />
 		<header class="sticky top-0">
 			<slot name="page-before-navbar" />
-			<Navbar configKey={navConfigKey} />
+			<Navbar configKey={navConfigKey}>
+				<slot name="navbar-before-title" slot="navbar-before-title" />
+				<slot name="navbar-after-title" slot="navbar-after-title" />
+				<slot name="navbar-before-links" slot="navbar-before-links" />
+				<slot name="navbar-after-links" slot="navbar-after-links" />
+			</Navbar>
 		</header>
 	</Fragment>
 
