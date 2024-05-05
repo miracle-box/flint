@@ -1,7 +1,7 @@
 ---
 import Layout from '@custom/layouts/LandingLayout.astro';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
-import { getLocalizedRoutes } from '~/lib/routing';
+import { getLocalizedRoutes, normalizeLink } from '~/lib/routing';
 
 const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
@@ -10,6 +10,34 @@ export const getStaticPaths = getLocalizedRoutes();
 ---
 
 <Layout title={t('site.name')} description={t('site.description')}>
-	<div>index</div>
-	<div>index</div>
+	<div class="hero bg-base-200 py-20">
+		<div class="hero-content text-center">
+			<div class="max-w-md">
+				<h1 class="text-5xl font-bold">{t('site.name')}</h1>
+				<p class="py-6">
+					{t('site.description')}
+				</p>
+
+				<div class="flex justify-center gap-2">
+					<a
+						class="btn btn-primary"
+						href={normalizeLink(locale, '/docs')}
+					>
+						{t('custom.hero.docs')}
+					</a>
+					<a
+						class="btn btn-outline"
+						href="https://github.com/miracle-box/flint"
+					>
+						<span class="icon-[tabler--brand-github] h-6 w-6">
+						</span>
+
+						<span>
+							{t('custom.hero.github')}
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </Layout>

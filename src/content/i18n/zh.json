@@ -13,5 +13,7 @@
     "custom.navbar.docs": "文档",
     "custom.navbar.flint": "Flint",
     "custom.navbar.github": "GitHub",
-    "custom.footer.text": "本文档由 Flint 生成"
+    "custom.footer.text": "本文档由 Flint 生成",
+    "custom.hero.docs": "快速开始",
+    "custom.hero.github": "GitHub"
 }
