@@ -12,6 +12,7 @@ const { navConfigKey } = Astro.props;
 	<header>
 		<slot name="before-navbar" />
 		<Navbar configKey={navConfigKey} />
+		<slot name="after-navbar" />
 	</header>
 
 	<main class="flex-shrink-0 flex-grow">
@@ -20,4 +21,5 @@ const { navConfigKey } = Astro.props;
 
 	<slot name="before-footer" />
 	<slot name="footer" />
+	<slot name="after-footer" />
 </BaseLayout>
