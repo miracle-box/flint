@@ -20,8 +20,6 @@ const { title, description } = Astro.props;
 	lightTheme="light"
 	darkTheme="dark"
 >
-	<slot />
-
 	<footer
 		slot="footer"
 		class="footer footer-center border-t border-base-content/10 p-4 text-base-content"
@@ -32,4 +30,6 @@ const { title, description } = Astro.props;
 			</a>
 		</aside>
 	</footer>
+
+	<slot />
 </Layout>

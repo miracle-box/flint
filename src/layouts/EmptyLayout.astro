@@ -1,0 +1,14 @@
+---
+import Layout from './LayoutBase.astro';
+import type { LayoutBaseProps } from '~/lib/types';
+
+type Props = LayoutBaseProps;
+---
+
+<Layout {...Astro.props}>
+	<slot name="page-top" />
+
+	<slot />
+
+	<slot name="page-bottom" />
+</Layout>
