@@ -29,11 +29,11 @@ export type SiteConfig = z.infer<typeof siteConfigSchema>;
 export type UserSiteConfig = Partial<SiteConfig>;
 
 const navbarConfigSchema = z.object({
-	titleI18nKey: z.string().default('site.name'),
+	titleI18nKey: z.string().optional(),
 	showTitle: z.boolean().default(true),
-	icon: z.string().default('/favicon.svg'),
+	icon: z.string().optional(),
 	showIcon: z.boolean().default(true),
-	titleLink: z.string().default('/'),
+	titleLink: z.string().optional(),
 	links: z
 		.object({
 			labelI18nKey: z.string(),
