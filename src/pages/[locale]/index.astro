@@ -1,7 +1,7 @@
 ---
+import Layout from '@custom/layouts/LandingLayout.astro';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
 import { getLocalizedRoutes } from '~/lib/routing';
-import Layout from '~/layouts/PageLayout.astro';
 
 const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
@@ -9,10 +9,7 @@ const t = await useTranslation(locale);
 export const getStaticPaths = getLocalizedRoutes();
 ---
 
-<Layout
-	title={t('site.name')}
-	description={t('site.description')}
-	navConfigKey="landing"
->
-	index
+<Layout title={t('site.name')} description={t('site.description')}>
+	<div>index</div>
+	<div>index</div>
 </Layout>

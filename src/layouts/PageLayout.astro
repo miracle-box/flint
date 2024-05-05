@@ -18,8 +18,6 @@ const { navConfigKey } = Astro.props;
 		<slot />
 	</main>
 
-	<footer>
-		<slot name="before-footer" />
-		<slot name="footer" />
-	</footer>
+	<slot name="before-footer" />
+	<slot name="footer" />
 </BaseLayout>

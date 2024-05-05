@@ -12,5 +12,6 @@
     "custom.custom": "自定义国际化文本",
     "custom.navbar.docs": "文档",
     "custom.navbar.flint": "Flint",
-    "custom.navbar.github": "GitHub"
+    "custom.navbar.github": "GitHub",
+    "custom.footer.text": "本文档由 Flint 生成"
 }

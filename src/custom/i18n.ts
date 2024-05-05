@@ -6,4 +6,5 @@ export const customI18nSchema: CustomI18nSchema = {
 	'custom.navbar.docs': z.string(),
 	'custom.navbar.flint': z.string(),
 	'custom.navbar.github': z.string(),
+	'custom.footer.text': z.string(),
 };
