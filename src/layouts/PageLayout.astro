@@ -11,14 +11,24 @@ const { navConfigKey } = Astro.props;
 <Layout {...Astro.props}>
 	<Fragment slot="layout-top">
 		<slot name="layout-top" />
-		<header class="sticky top-0 z-10">
+		<header
+			class="sticky top-0 z-10 border-b border-base-content/10 bg-base-100"
+		>
 			<slot name="page-before-navbar" />
-			<Navbar configKey={navConfigKey}>
-				<slot name="navbar-before-title" slot="navbar-before-title" />
-				<slot name="navbar-after-title" slot="navbar-after-title" />
-				<slot name="navbar-before-links" slot="navbar-before-links" />
-				<slot name="navbar-after-links" slot="navbar-after-links" />
-			</Navbar>
+			<div class="container mx-auto">
+				<Navbar configKey={navConfigKey}>
+					<slot
+						name="navbar-before-title"
+						slot="navbar-before-title"
+					/>
+					<slot name="navbar-after-title" slot="navbar-after-title" />
+					<slot
+						name="navbar-before-links"
+						slot="navbar-before-links"
+					/>
+					<slot name="navbar-after-links" slot="navbar-after-links" />
+				</Navbar>
+			</div>
 		</header>
 	</Fragment>
 

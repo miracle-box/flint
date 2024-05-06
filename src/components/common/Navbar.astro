@@ -30,7 +30,7 @@ const icon = navConfig?.icon ?? Config.site.icon.href;
 const titleLink = normalizeLink(locale, navConfig?.titleLink ?? '/');
 ---
 
-<nav class="navbar border-b border-base-content/10 bg-base-100">
+<nav class="navbar">
 	<div class="flex-1">
 		<slot name="navbar-before-title" />
 		<a href={titleLink} class="btn btn-ghost text-xl">
