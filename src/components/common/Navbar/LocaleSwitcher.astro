@@ -1,11 +1,18 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { getLocaleByCode, getLocales, useTranslation } from '~/lib/i18n/utils';
+import {
+	getLocaleByCode,
+	getLocales,
+	useTranslation,
+	trimLocaleFromPath,
+} from '~/lib/i18n/utils';
 
 const locales = getLocales();
 
 const currentLocale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(currentLocale);
+
+const path = trimLocaleFromPath(Astro.url.pathname);
 ---
 
 <details class="dropdown dropdown-end">
@@ -24,7 +31,7 @@ const t = await useTranslation(currentLocale);
 					<li>
 						<a
 							class:list={{ active: locale === currentLocale }}
-							href={getRelativeLocaleUrl(locale)}
+							href={getRelativeLocaleUrl(locale, path)}
 							aria-label={transFunction('lang.label')}
 						>
 							{transFunction('lang.label')}

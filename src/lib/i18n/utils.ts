@@ -14,6 +14,17 @@ export function getLocaleByCode(code?: string): string {
 	return getPathByLocale(code) as string;
 }
 
+export function trimLocaleFromPath(path: string) {
+	const locales = getLocales();
+	const pathSegments = path.split('/');
+
+	if (pathSegments.length <= 1) return '/';
+	// Array length is guarded, so we can safely access the second element.
+	if (!locales.includes(pathSegments[1]!)) return path;
+
+	return `/${pathSegments.slice(2).join('/')}`;
+}
+
 export async function useTranslation(locale: string) {
 	// Default locale
 	const defaultTrans = await getEntry('i18n', Config.i18n.defaultLocale);
