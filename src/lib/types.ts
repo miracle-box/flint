@@ -1,5 +1,5 @@
 export type LayoutBaseProps = {
-	title: string;
+	title: string[];
 	description: string;
 	lightTheme?: string;
 	darkTheme?: string;

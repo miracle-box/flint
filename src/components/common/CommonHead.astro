@@ -2,7 +2,7 @@
 import { Config } from '~/config';
 
 type Props = {
-	title: string;
+	title: string[];
 	description: string;
 };
 
@@ -19,5 +19,5 @@ const { title, description } = Astro.props;
 		href={Config.site.icon.href}
 	/>
 	<meta name="generator" content={Astro.generator} />
-	<title>{title}</title>
+	<title>{title.join(Config.site.titleSeparator)}</title>
 </head>

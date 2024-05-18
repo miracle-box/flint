@@ -9,7 +9,7 @@ const t = await useTranslation(locale);
 export const getStaticPaths = () => getLocalizedPathItems();
 ---
 
-<Layout title={t('site.name')} description={t('site.description')}>
+<Layout title={[t('site.name')]} description={t('site.description')}>
 	<div class="hero bg-base-200 py-20">
 		<div class="hero-content text-center">
 			<div class="max-w-md">

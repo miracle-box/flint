@@ -1,7 +1,6 @@
 ---
 import { getLocaleByPath } from 'astro:i18n';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
-import { Config } from '~/config';
 import CommonHead from '~/components/common/CommonHead.astro';
 import type { LayoutBaseProps } from '~/lib/types';
 
@@ -60,10 +59,7 @@ const darkTheme = Astro.props.darkTheme || 'dark';
 </script>
 
 <html lang={langCode} data-theme-light={lightTheme} data-theme-dark={darkTheme}>
-	<CommonHead
-		title={`${title}${Config.site.titleSeparator}${t('site.name')}`}
-		description={description}
-	/>
+	<CommonHead title={[...title, t('site.name')]} description={description} />
 
 	<body class="flex min-h-screen flex-col">
 		<slot />
