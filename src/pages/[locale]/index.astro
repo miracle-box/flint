@@ -1,12 +1,12 @@
 ---
 import Layout from '@custom/layouts/LandingLayout.astro';
 import { getLocaleByCode, useTranslation } from '~/lib/i18n/utils';
-import { getLocalizedRoutes, normalizeLink } from '~/lib/routing';
+import { getLocalizedPathItems, normalizeLink } from '~/lib/routing';
 
 const locale = getLocaleByCode(Astro.currentLocale);
 const t = await useTranslation(locale);
 
-export const getStaticPaths = getLocalizedRoutes();
+export const getStaticPaths = () => getLocalizedPathItems();
 ---
 
 <Layout title={t('site.name')} description={t('site.description')}>

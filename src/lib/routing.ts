@@ -1,4 +1,4 @@
-import type { GetStaticPaths, Props } from 'astro';
+import type { GetStaticPathsItem, Props } from 'astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLocales } from '~/lib/i18n/utils';
 
@@ -11,15 +11,31 @@ export function normalizeLink(locale: string, link: string) {
 	return isExternalLink(link) ? link : getRelativeLocaleUrl(locale, link);
 }
 
-export function getLocalizedRoutes(
-	// Receive an function for generating props
-	propsGenerator: (locale: string) => Props = () => ({}),
-) {
-	return (() => {
-		const locales = getLocales();
-		return locales.map((locale) => ({
-			params: { locale },
-			props: propsGenerator(locale),
-		}));
-	}) satisfies GetStaticPaths;
+export function getLocalizedPathItems() {
+	const locales = getLocales();
+
+	return locales.map((locale) => ({
+		params: { locale },
+		props: {},
+	})) satisfies GetStaticPathsItem[];
+}
+
+export function addParamForPathItem<
+	TItem extends GetStaticPathsItem,
+	TParams extends GetStaticPathsItem['params'],
+>(item: TItem, paramsGenerator: (item: TItem) => TParams) {
+	return {
+		...item,
+		params: { ...item.params, ...paramsGenerator(item) },
+	} satisfies GetStaticPathsItem;
+}
+
+export function addPropForPathItem<
+	TItem extends GetStaticPathsItem,
+	TProps extends Props,
+>(item: TItem, propsGenerator: (item: TItem) => TProps) {
+	return {
+		...item,
+		props: { ...item.props, ...propsGenerator(item) },
+	} satisfies GetStaticPathsItem;
 }
